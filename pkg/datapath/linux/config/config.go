@@ -522,6 +522,7 @@ func isL3DevMacro() (string, error) {
 			macro += fmt.Sprintf("\ncase %d: is_l3 = true; break; \\", link.Attrs().Index)
 		}
 	}
+	macro += "\ndefault: break; \\"
 	macro += "\n} \\\n is_l3; })\n"
 
 	if !anyL3Dev {
