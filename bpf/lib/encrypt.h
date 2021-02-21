@@ -68,7 +68,11 @@ do_decrypt(struct __ctx_buff *ctx, __u16 proto)
 		return CTX_ACT_OK;
 	}
 	ctx->mark = 0;
+#if 0 //ENABLE_HOST_REDIRECT? What is the correct ifdef here
 	return redirect(CILIUM_IFINDEX, 0);
+#else
+	return CTX_ACT_OK;
+#endif /* ENABLE_HOST_REDIRECT */
 }
 #else
 static __always_inline int
